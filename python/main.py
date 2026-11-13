@@ -1,3 +1,5 @@
+import os
+
 from data_loader import load_courses
 from scheduler import (
     generate_schedules,
@@ -196,9 +198,12 @@ def main():
 
     try:
 
-        all_courses = load_courses(
+        csv_path = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
             "courses.csv"
         )
+
+        all_courses = load_courses(csv_path)
 
     except FileNotFoundError:
 

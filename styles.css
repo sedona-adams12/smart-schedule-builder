@@ -1,0 +1,466 @@
+/* ==========================================================================
+   Smart Schedule Builder - styles
+   Sections: 1 Theme variables | 2 Base | 3 Page layout | 4 Panels & forms
+             5 Buttons | 6 Results | 7 Weekly grid | 8 Utilities | 9 Print/motion
+   ========================================================================== */
+
+/* ---------- 1. Theme variables ---------- */
+:root {
+  --color-bg: #eef1f6;
+  --color-panel: #fff;
+  --color-text: #14213d;
+  --color-muted: #5b6784;
+  --color-border: #d5dbe8;
+  --color-accent: #2b4eff;
+  --color-accent-text: #fff;
+  --color-good: #0a7a4b;
+  --color-warn: #b25b00;
+  --color-bad: #b3261e;
+
+  /* class-block colour tuning (hue is set per course in script.js) */
+  --block-saturation: 70%;
+  --block-lightness: 89%;
+  --block-border-lightness: 42%;
+  --block-text: #14213d;
+
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-bg: #0e1424;
+    --color-panel: #161e33;
+    --color-text: #e8ecf8;
+    --color-muted: #98a3c2;
+    --color-border: #2a3555;
+    --color-accent: #7b93ff;
+    --color-accent-text: #0e1424;
+    --color-good: #4fd39a;
+    --color-warn: #f0a24b;
+    --color-bad: #ff8a80;
+    --block-saturation: 35%;
+    --block-lightness: 24%;
+    --block-border-lightness: 62%;
+    --block-text: #e8ecf8;
+  }
+}
+
+:root[data-theme="dark"] {
+  --color-bg: #0e1424;
+  --color-panel: #161e33;
+  --color-text: #e8ecf8;
+  --color-muted: #98a3c2;
+  --color-border: #2a3555;
+  --color-accent: #7b93ff;
+  --color-accent-text: #0e1424;
+  --color-good: #4fd39a;
+  --color-warn: #f0a24b;
+  --color-bad: #ff8a80;
+  --block-saturation: 35%;
+  --block-lightness: 24%;
+  --block-border-lightness: 62%;
+  --block-text: #e8ecf8;
+}
+
+/* ---------- 2. Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font: 400 16px/1.5 "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  line-height: 1.15;
+}
+
+h1 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* ---------- 3. Page layout ---------- */
+.site-header {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 20px 8px;
+}
+
+.site-header p {
+  margin: 6px 0 0;
+  color: var(--color-muted);
+  max-width: 60ch;
+}
+
+.layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 20px 48px;
+  display: grid;
+  grid-template-columns: 330px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- 4. Panels & forms ---------- */
+.panel {
+  background: var(--color-panel);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.panel + .panel {
+  margin-top: 16px;
+}
+
+.stack > * + * {
+  margin-top: 14px;
+}
+
+.course-list > * + * {
+  margin-top: 8px;
+}
+
+.csv-details-body {
+  margin-top: 12px;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.field-row {
+  display: flex;
+  gap: 10px;
+}
+
+.field-row > * {
+  flex: 1;
+}
+
+input[type=time],
+input[type=number],
+textarea {
+  width: 100%;
+  font: inherit;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+textarea {
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 0.8rem;
+  min-height: 110px;
+  resize: vertical;
+}
+
+input:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+.checkbox-row:focus-within {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 400;
+}
+
+.checkbox-row input {
+  accent-color: var(--color-accent);
+  width: 18px;
+  height: 18px;
+}
+
+.checkbox-row small {
+  margin-left: auto;
+  color: var(--color-muted);
+}
+
+.checkbox-row:has(input:checked) {
+  border-color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+}
+
+details summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.hint {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.error-text {
+  color: var(--color-bad);
+  font-size: 0.85rem;
+  margin: 6px 0 0;
+  white-space: pre-line;
+}
+
+/* ---------- 5. Buttons ---------- */
+button {
+  font: inherit;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 10px 14px;
+  border: 1px solid var(--color-border);
+  background: var(--color-panel);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--color-accent);
+  color: var(--color-accent-text);
+  border-color: var(--color-accent);
+  width: 100%;
+  padding: 13px;
+  font-size: 1.05rem;
+}
+
+/* ---------- 6. Results ---------- */
+.option-tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.option-tab {
+  white-space: nowrap;
+}
+
+.option-tab[aria-pressed=true] {
+  background: var(--color-accent);
+  color: var(--color-accent-text);
+  border-color: var(--color-accent);
+}
+
+.result-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 14px 0;
+}
+
+.result-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+}
+
+.score {
+  font-size: 3.4rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.score small {
+  font-size: 1rem;
+  color: var(--color-muted);
+  font-weight: 400;
+}
+
+.two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+@media (max-width: 700px) {
+  .two-column {
+    grid-template-columns: 1fr;
+  }
+}
+
+.plain-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.analysis-list li {
+  padding: 6px 0;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  gap: 10px;
+}
+
+.analysis-list li:last-child {
+  border: 0;
+}
+
+.is-ok {
+  color: var(--color-good);
+}
+
+.is-warning {
+  color: var(--color-warn);
+}
+
+.points {
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-muted);
+}
+
+.sections-list li {
+  padding: 6px 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.92rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 48px 16px;
+  color: var(--color-muted);
+}
+
+/* ---------- 7. Weekly grid ---------- */
+.grid-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+}
+
+.week-grid {
+  display: grid;
+  grid-template-columns: 56px repeat(5, minmax(96px, 1fr));
+  min-width: 560px;
+}
+
+.grid-header {
+  padding: 8px;
+  text-align: center;
+  font-weight: 600;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.grid-times {
+  position: relative;
+  border-right: 1px solid var(--color-border);
+}
+
+.grid-times span {
+  position: absolute;
+  right: 6px;
+  font-size: 0.72rem;
+  color: var(--color-muted);
+  transform: translateY(-50%);
+}
+
+.grid-day {
+  position: relative;
+  border-right: 1px solid var(--color-border);
+  /* --hour-height is set inline by script.js */
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(var(--hour-height) - 1px),
+    var(--color-border) calc(var(--hour-height) - 1px),
+    var(--color-border) var(--hour-height)
+  );
+}
+
+.grid-day:last-child {
+  border-right: 0;
+}
+
+.class-block {
+  position: absolute;
+  left: 3px;
+  right: 3px;
+  border-radius: 7px;
+  padding: 4px 7px;
+  overflow: hidden;
+  font-size: 0.78rem;
+  line-height: 1.25;
+  /* --hue is set inline by script.js, one per course */
+  background: hsl(var(--hue) var(--block-saturation) var(--block-lightness));
+  border-left: 5px solid hsl(var(--hue) 60% var(--block-border-lightness));
+  color: var(--block-text);
+}
+
+.class-block b {
+  display: block;
+  font-size: 0.85rem;
+}
+
+/* ---------- 8. Utilities ---------- */
+/* (none yet; keep one-off helpers here) */
+
+/* ---------- 9. Print & motion ---------- */
+@media print {
+  .no-print,
+  .site-header p {
+    display: none;
+  }
+
+  .layout {
+    display: block;
+  }
+
+  .panel {
+    border: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .results-panel {
+    animation: fade-in 0.25s ease-out;
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0.4; }
+    to   { opacity: 1; }
+  }
+}
